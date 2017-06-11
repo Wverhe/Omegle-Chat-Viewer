@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="contact-list" />
         <module name="Contact-List-2" />
+        <module name="omegle-chat-viewer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="contact-list" target="1.5" />
       <module name="Contact-List-2" target="1.5" />
+      <module name="omegle-chat-viewer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

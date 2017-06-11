@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Contact-List-2.iml" filepath="$PROJECT_DIR$/Contact-List-2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/contact-list.iml" filepath="$PROJECT_DIR$/contact-list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/omegle-chat-viewer.iml" filepath="$PROJECT_DIR$/omegle-chat-viewer.iml" />
     </modules>
   </component>
 </project>
