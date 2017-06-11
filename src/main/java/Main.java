@@ -4,17 +4,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.openqa.selenium.WebDriver;
 
 public class Main extends Application {
     TabPane root;
     Tab tabCore, tabConsole;
-    GridPane paneCore, paneConsole;
     Label lblTags;
+    GridPane paneCore, paneConsole;
     TextField txtTags;
     Button btnConnect;
+    Client clientA, clientB;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        clientA = new Client();
+        clientB = new Client();
+
         root = new TabPane();
         root.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
