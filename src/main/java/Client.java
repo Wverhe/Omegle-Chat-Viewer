@@ -10,13 +10,14 @@ import java.util.List;
  */
 public class Client {
     WebDriver driver;
-    By txtInterests, btnStartChatting, btnDisconnect, btnSend;
+    By txtInterests, txtChatBox, btnStartChatting, btnDisconnect, btnSend;
     boolean firstConnect;
 
     public Client(){
         driver = new ChromeDriver();
         driver.get("http://www.omegle.com/");
         txtInterests = By.className("newtopicinput");
+        txtChatBox = By.className("chatmsg");
         btnStartChatting = By.id("textbtn");
         btnDisconnect = By.className("disconnectbtn");
         btnSend = By.className("sendbtn");
@@ -39,7 +40,8 @@ public class Client {
     }
 
     public void sendMessage(String message){
-
+        driver.findElement(txtChatBox).sendKeys(message);
+        driver.findElement(btnSend).click();
     }
 
     public ArrayList<Message> getMessages(){
@@ -48,6 +50,7 @@ public class Client {
         for(int i = 0; i < items.size(); i++){
             try{
                 WebElement messageElement = items.get(i).findElement(By.tagName("p"));
+                System.out.println("Client: P FOUND at index - " + i);
                 int type = -1;
                 String message = "";
                 if(messageElement.getAttribute("class").equals("statuslog")){
@@ -63,8 +66,11 @@ public class Client {
                 }else if(type == Message.STRANGER || type == Message.LOCAL){
                     message = messageElement.findElement(By.tagName("span")).getText();
                 }
+                System.out.println(message);
                 messages.add(new Message(message, type));
-            }catch(NoSuchElementException | StaleElementReferenceException e){}
+            }catch(NoSuchElementException | StaleElementReferenceException e){
+                e.printStackTrace();
+            }
         }
         return messages;
     }

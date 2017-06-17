@@ -69,21 +69,31 @@ public class Main extends Application {
     }
 
     class CheckClients extends TimerTask{
+        //TODO: Add Counter Reset
         private int clientACount = 0, clientBCount = 0;
         @Override
         public void run() {
             if(clientA.getMessages().size() > clientACount){
+
                 for(int i = clientACount; i < clientA.getMessages().size(); i++){
-                    console.getMessages().add(new Message(clientA.getMessages().get(i).getMessage(), clientA.getMessages().get(i).getType()));
                     System.out.println(clientA.getMessages().get(i).getType() + ": " + clientA.getMessages().get(i).getMessage());
+                    System.out.println("Client Message Local Count: " + clientACount + " Client Message Total Counter: " + clientA.getMessages().size());
+                    //console.getMessages().add(new Message(clientA.getMessages().get(i).getMessage(), clientA.getMessages().get(i).getType()));
+
+                    if(clientA.getMessages().get(i).getType() == Message.STRANGER){
+                        clientB.sendMessage(clientA.getMessages().get(i).getMessage());
+                    }
                     clientACount++;
                 }
             }
 
             if(clientB.getMessages().size() > clientBCount){
                 for(int i = clientBCount; i < clientB.getMessages().size(); i++){
-                    console.getMessages().add(new Message(clientB.getMessages().get(i).getMessage(), clientB.getMessages().get(i).getType()));
+                   // console.getMessages().add(new Message(clientB.getMessages().get(i).getMessage(), clientB.getMessages().get(i).getType()));
                     //System.out.println(clientB.getMessages().get(i).getType() + ": " + clientB.getMessages().get(i).getMessage());
+                    if(clientB.getMessages().get(i).getType() == Message.STRANGER){
+                        clientA.sendMessage(clientB.getMessages().get(i).getMessage());
+                    }
                     clientBCount++;
                 }
             }
